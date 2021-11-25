@@ -155,7 +155,7 @@
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="Rules.cpp" />
     <ClCompile Include="Shop.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Storage.cpp" />
     <ClCompile Include="SuperStorage.cpp" />
     <ClCompile Include="Trash.cpp" />

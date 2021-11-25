@@ -2,10 +2,9 @@
 #include "Config.h"
 class Rules {
 public:
+	Rules(std::vector<WholesaleBox*>& boxes);
 	int64_t getCountType();
 	int64_t getBound();
-	void CreateRules(std::vector<WholesaleBox*>& boxes);
-	void setNumberOfBuilding(is::Builds type, int64_t number);
 	int64_t getNumberOfBuilding(is::Builds type);
 private:
 	std::vector<int64_t> numbers_of_buildings;

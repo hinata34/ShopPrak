@@ -21,8 +21,6 @@ namespace is {
 		Trash
 	};
 
-
-
 	struct Product {
 		std::string name;
 		int64_t price_per_kg, package_size;
