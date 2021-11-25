@@ -21,13 +21,7 @@ namespace is {
 		Trash
 	};
 
-	enum Products {
-		Product1,
-		Product2,
-		Product3,
-		Product4,
-		Product5
-	};
+
 
 	struct Product {
 		std::string name;
