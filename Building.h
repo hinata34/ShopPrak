@@ -4,6 +4,7 @@
 class Building {
 public:
 	Building();
+	Building(std::vector<Building*> buildings);
 	virtual void checkApplications() = 0; // Проверяем, что нужно отправить
 	virtual void checkOrder() = 0; // Проверяем, что нужно заказать
 	virtual void updateDayInfo(Day* day) = 0; // Передает информацию по дню
@@ -20,10 +21,10 @@ protected:
 
 	std::map<Building*, is::Application*> today_applications; // То что мы заказали сегодня
 	std::vector<std::vector<is::Application*>> applications; // То что мы отправляем
-	std::vector<List*> products; // То что лежит складе
+	std::vector<is::List> products; // То что лежит складе
 	std::vector<is::Application*> expected_applications; // Заказы, которые мы ожидаем
 	std::map<Building*, int64_t> reputations; // Как мы относимся к каждому объекту
 	int64_t category; // К какой категории относится объект
-	std::vector<Building*> buildings; // У кого мы можем заказывать
+	std::vector<Building*> buildings_offer; // У кого мы можем заказывать
 };
 

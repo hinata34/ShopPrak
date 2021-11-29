@@ -1,5 +1,5 @@
 #pragma once
-#include "Buildings.h"
+#include "Building.h"
 class Storage : public Building {
 public:
 	Storage();
@@ -16,5 +16,7 @@ protected:
 	virtual is::Application* generateApplication(Building* receiver) override;
 	virtual void distributionProducts() override;
 	virtual int64_t getReputation(Building* building) override;
+	std::vector<std::pair<WholesaleBox*, int64_t>> info_products;
+	double coef_for_price;
 };
 

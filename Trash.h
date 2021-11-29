@@ -1,5 +1,5 @@
 #pragma once
-#include "Buildings.h"
+#include "Building.h"
 class Trash : public Building {
 public:
 	Trash();

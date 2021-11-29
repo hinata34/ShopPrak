@@ -12,7 +12,6 @@ struct Application;
 class Building;
 class Rules;
 
-typedef std::vector<ElemInList> List;
 namespace is {
 	enum Builds {
 		Shop,
@@ -46,7 +45,13 @@ namespace is {
 	struct ElemInList {
 		WholesaleBox* product;
 		int64_t counter;
+		ElemInList(WholesaleBox* product, int64_t counter) {
+			this->product = product;
+			this->counter = counter;
+		}
 	};
+
+	typedef std::vector<is::ElemInList*> List;
 
 	struct Application {
 		Building* receiver, * customer;

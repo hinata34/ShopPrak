@@ -1,5 +1,5 @@
 #pragma once
-#include "Buildings.h"
+#include "Building.h"
 class SuperStorage : public Building {
 public:
 	SuperStorage();
@@ -16,5 +16,6 @@ protected:
 	virtual is::Application* generateApplication(Building* receiver) override;
 	virtual void distributionProducts() override;
 	virtual int64_t getReputation(Building* building) override;
+	double coef_for_price;
 };
 

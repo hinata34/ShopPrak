@@ -7,6 +7,7 @@
 int main() {
 	std::vector<is::WholesaleBox*> boxes;
 	std::vector<Building*> buidlings;
+	boxes.resize(4);
 
 	Rules rules(boxes);
 	rules.setNumberOfBuilding(is::Builds::Trash, 1);

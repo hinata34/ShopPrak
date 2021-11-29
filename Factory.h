@@ -1,5 +1,5 @@
 #pragma once
-#include "Buildings.h"
+#include "Building.h"
 #include "Shop.h"
 #include "Storage.h"
 #include "Trash.h"

@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Buildings.h" />
+    <ClInclude Include="Building.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Day.h" />
     <ClInclude Include="Factory.h" />
@@ -150,7 +150,7 @@
     <ClInclude Include="Trash.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Buildings.cpp" />
+    <ClCompile Include="Building.cpp" />
     <ClCompile Include="Day.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="Rules.cpp" />

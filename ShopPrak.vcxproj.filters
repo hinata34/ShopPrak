@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Buildings.h">
+    <ClInclude Include="Building.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Config.h">
@@ -44,7 +44,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Buildings.cpp">
+    <ClCompile Include="Building.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Factory.cpp">
