@@ -7,5 +7,4 @@
 int main() {
 	std::vector<WholesaleBox*> boxes;
 	Rules rules(boxes);
-	std::cout << "Start\n";
 }
