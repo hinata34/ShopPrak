@@ -21,7 +21,7 @@ protected:
 
 	std::map<Building*, is::Application*> today_applications; // То что мы заказали сегодня
 	std::vector<std::vector<is::Application*>> applications; // То что мы отправляем
-	std::vector<is::List> products; // То что лежит складе
+	std::vector<is::List*> products; // То что лежит складе
 	std::vector<is::Application*> expected_applications; // Заказы, которые мы ожидаем
 	std::map<Building*, int64_t> reputations; // Как мы относимся к каждому объекту
 	int64_t category; // К какой категории относится объект
