@@ -20,6 +20,8 @@ Rules::Rules(std::vector<is::WholesaleBox*>& boxes) {
 	boxes[3] = new is::WholesaleBox(new is::Product("", 1, 1, 1), 1 * 1);
 	boxes[4] = new is::WholesaleBox(new is::Product("", 1, 1, 1), 1 * 1);
 	boxes[5] = new is::WholesaleBox(new is::Product("", 1, 1, 1), 1 * 1);
+
+	int64_t x = 5;
 }
 
 int64_t Rules::getNumberOfBuilding(is::Builds type) {
