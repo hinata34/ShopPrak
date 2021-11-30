@@ -8,9 +8,9 @@ public:
 	virtual void updateDayInfo(Day* day) override;
 	virtual ~Shop();
 protected:
-	virtual bool createApplication(Building* receiver) override;
-	virtual void sendApplication(Building* receiver) override;
-	virtual void receiveApplication(is::Application* application) override;
+	virtual void createApplication(Building* receiver);
+	virtual void sendApplication(is::Application* application, Building* receiver);
+	virtual void receiveApplication(is::Application* application);
 	virtual void sendProducts(is::Application* application) override;
 	virtual void receiveProducts(is::Application* application) override;
 	virtual is::Application* generateApplication(Building* receiver) override;
