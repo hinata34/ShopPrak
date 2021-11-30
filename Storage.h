@@ -2,7 +2,8 @@
 #include "Building.h"
 class Storage : public Building {
 public:
-	Storage();
+	Storage() = default;
+	Storage(std::vector<is::WholesaleBox*>& boxes);
 	virtual void checkApplications() override;
 	virtual void checkOrder() override;
 	virtual void updateDayInfo(Day* day) override;
@@ -15,8 +16,7 @@ protected:
 	virtual void receiveProducts(is::Application* application) override;
 	virtual is::Application* generateApplication(Building* receiver) override;
 	virtual void distributionProducts() override;
-	virtual int64_t getReputation(Building* building) override;
-	std::vector<std::pair<WholesaleBox*, int64_t>> info_products;
+	std::vector<std::pair<is::WholesaleBox*, int64_t>> info_products;
 	double coef_for_price;
 };
 

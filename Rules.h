@@ -2,6 +2,7 @@
 #include "Config.h"
 class Rules {
 public:
+	Rules() = default;
 	Rules(std::vector<is::WholesaleBox*>& boxes);
 	int64_t getCountType();
 	int64_t getBound();

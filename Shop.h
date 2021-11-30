@@ -15,6 +15,5 @@ protected:
 	virtual void receiveProducts(is::Application* application) override;
 	virtual is::Application* generateApplication(Building* receiver) override;
 	virtual void distributionProducts() override;
-	virtual int64_t getReputation(Building* building) override;
 };
 

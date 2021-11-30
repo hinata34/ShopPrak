@@ -4,11 +4,12 @@
 #include "SuperStorage.h"
 #include "Factory.h"
 #include "Rules.h"
+
+
 int main() {
 	std::vector<is::WholesaleBox*> boxes;
 	std::vector<Building*> buidlings;
 	boxes.resize(4);
-
 	Rules rules(boxes);
 	rules.setNumberOfBuilding(is::Builds::Trash, 1);
 	rules.setNumberOfBuilding(is::Builds::Shop, 1);
