@@ -37,7 +37,7 @@ int main() {
 		buildings.push_back(trash_factory->createBuilding());
 	}
 
-	int n = 30, m, k;
+	int64_t n = 30, m, k;
 
 	//std::cin >> n >> m >> k;
 
@@ -46,13 +46,13 @@ int main() {
 		//начало дня
 		
 		//утро
-		for (int j = 0; j < buildings.size(); ++j) {
-			buildings[i]->checkApplications(); //отправляем все товары у всех buildings
+		for (auto build : buildings) {
+			build->checkApplications();
 		}
 
 		//в течении дня делаем заказы
-		for (int j = 0; j < buildings.size(); ++j) {
-			buildings[i]->checkOrder();
+		for (auto build : buildings) {
+			build->checkOrder(buildings);
 		}
 
 	}
