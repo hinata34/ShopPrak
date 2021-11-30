@@ -5,9 +5,10 @@ class Building {
 public:
 	Building() = default;
 	virtual void checkApplications() = 0; // Проверяем, что нужно отправить
-	virtual void checkOrder() = 0; // Проверяем, что нужно заказать
+	virtual void checkOrder(std::vector<Building*> buildings) = 0; // Проверяем, что нужно заказать
 	virtual void updateDayInfo(Day* day) = 0; // Передает информацию по дню
 	virtual ~Building();
+	int64_t getCategory();
 protected:
 	virtual bool createApplication(Building* receiver) = 0; // Создание заказа
 	virtual void sendApplication(Building* receiver) = 0; // Отправка заказа

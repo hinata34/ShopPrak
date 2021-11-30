@@ -4,7 +4,7 @@ class SuperStorage : public Building {
 public:
 	SuperStorage();
 	virtual void checkApplications() override;
-	virtual void checkOrder() override;
+	virtual void checkOrder(std::vector<Building*> buildings) override;
 	virtual void updateDayInfo(Day* day) override;
 	virtual ~SuperStorage();
 protected:

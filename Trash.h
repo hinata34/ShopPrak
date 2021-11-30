@@ -4,7 +4,7 @@ class Trash : public Building {
 public:
 	Trash();
 	virtual void checkApplications() override;
-	virtual void checkOrder() override;
+	virtual void checkOrder(std::vector<Building*> buidlings) override;
 	virtual void updateDayInfo(Day* day) override;
 	virtual ~Trash();
 protected:

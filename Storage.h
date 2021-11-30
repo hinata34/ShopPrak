@@ -5,7 +5,7 @@ public:
 	Storage() = default;
 	Storage(std::vector<is::WholesaleBox*>& boxes);
 	virtual void checkApplications() override;
-	virtual void checkOrder() override;
+	virtual void checkOrder(std::vector<Building*> buildings) override;
 	virtual void updateDayInfo(Day* day) override;
 	virtual ~Storage();
 protected:
