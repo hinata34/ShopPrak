@@ -27,6 +27,7 @@ int main() {
 
 	for (size_t i = 0; i < rules.getNumberOfBuilding(is::Builds::Storage); ++i) {
 		buildings.push_back(storage_factory->createBuilding());
+		static_cast<Storage*>(buildings[buildings.size() - 1])->setStorage(boxes);
 	}
 
 	for (size_t i = 0; i < rules.getNumberOfBuilding(is::Builds::SuperStorage); ++i) {
@@ -52,7 +53,7 @@ int main() {
 
 		//в течении дня делаем заказы
 		for (auto build : buildings) {
-			build->checkOrder(buildings);
+			build->checkOrder(buildings, boxes);
 		}
 
 	}

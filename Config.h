@@ -57,8 +57,12 @@ namespace is {
 
 	struct Application {
 		Building* receiver, * customer;
-		int64_t number_of_application;
 		List* application;
+		Application(Building* receiver, Building* customer, List* application) {
+			this->receiver = receiver;
+			this->customer = customer;
+			this->application = application;
+		}
 	};
 
 	struct ShopApplication {

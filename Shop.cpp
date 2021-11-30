@@ -1,9 +1,10 @@
 #include "Shop.h"
 
 Shop::Shop() {
+	category = 1;
 }
 
-void Shop::checkOrder(std::vector<Building*> buildings) {
+void Shop::checkOrder(std::vector<Building*> buildings, std::vector<is::WholesaleBox*> boxes) {
 	std::mt19937_64 gen(time(0));
 	if (gen() % 2 != 0) {
 		return;
@@ -18,8 +19,22 @@ void Shop::checkOrder(std::vector<Building*> buildings) {
 				}
 			}
 			if (flag) {
-				this->createApplication(i);
+				this->createApplication(i, boxes);
+				break;
 			}
 		}
 	}
+}
+
+is::Application* Shop::generateApplication(Building* receiver, std::vector<is::WholesaleBox*> boxes) {
+	std::mt19937_64 gen(time(0));
+	std::uniform_int_distribution<> uid_product(0, 5);
+	std::uniform_int_distribution<> uid_counter(0, 5);
+	is::Application* application = new is::Application(this, receiver, new is::List);
+	for (auto i : boxes) {
+		if (uid_counter(gen) % 5 == 0) {
+			application->application->push_back(new is::ElemInList(i, uid_counter(gen)));
+		}
+	}
+	return application;
 }

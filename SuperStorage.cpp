@@ -2,6 +2,7 @@
 
 SuperStorage::SuperStorage() : Building(){
 	coef_for_price = 0.95;
+	category = 3;
 }
 
 void SuperStorage::applicationProcessing(is::Application* application) {
