@@ -13,7 +13,7 @@ protected:
 	virtual void createApplication(Building* receiver); // Создание заказа
 	virtual void sendApplication(is::Application* application, Building* receiver); // Отправка заказа
 	virtual void receiveApplication(is::Application* application); // Прием заказа
-	virtual void applicationProcessing(is::Application* application) = 0;
+	virtual void applicationProcessing(is::Application* application);
 	virtual void sendProducts(is::Application* application) = 0; // Отправка продуктов
 	virtual void receiveProducts(is::Application* application) = 0; // Прием продуктов
 	virtual is::Application* generateApplication(Building* receiver) = 0; // Генерация заказа

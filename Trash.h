@@ -8,8 +8,6 @@ public:
 	virtual void updateDayInfo(Day* day) override;
 	virtual ~Trash();
 protected:
-	virtual bool createApplication(Building* receiver) override;
-	virtual void sendApplication(Building* receiver) override;
 	virtual void receiveApplication(is::Application* application) override;
 	virtual void sendProducts(is::Application* application) override;
 	virtual void receiveProducts(is::Application* application) override;

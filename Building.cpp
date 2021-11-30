@@ -20,3 +20,7 @@ void Building::sendApplication(is::Application* application, Building* receiver)
 void Building::receiveApplication(is::Application* application) {
 	applicationProcessing(application);
 }
+
+void Building::applicationProcessing(is::Application* application) {
+	return;
+}
