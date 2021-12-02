@@ -26,8 +26,9 @@ void Shop::checkOrder(std::vector<Building*>& buildings, std::vector<is::Wholesa
 	}
 }
 
-void Shop::receiveProducts(is::Application* Application) {
-
+void Shop::receiveProducts(is::Application* application) {
+	debug.received.push_back(*application);
+	return;
 }
 
 is::Application* Shop::generateApplication(Building* receiver, std::vector<is::WholesaleBox*>& boxes) {

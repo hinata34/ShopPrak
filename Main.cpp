@@ -9,13 +9,16 @@ int main() {
 	int64_t days, shops, products;
 	std::vector<is::WholesaleBox*> boxes;
 	std::vector<Building*> buildings;
+	std::vector<std::vector<is::DebugInfo>> info_days;
 	std::cin >> days >> shops >> products;
 	boxes.resize(products);
 	Rules rules(boxes);
 	rules.setNumberOfBuilding(is::Builds::Shop, shops);
 	rules.setNumberOfBuilding(is::Builds::Storage, 1);
 	rules.setNumberOfBuilding(is::Builds::SuperStorage, 1);
-
+	info_days.resize(rules.getNumberOfBuilding(is::Builds::Shop) +
+					 rules.getNumberOfBuilding(is::Builds::Storage) +
+					 rules.getNumberOfBuilding(is::Builds::SuperStorage));
 	ShopFactory* shop_factory = new ShopFactory();
 	StorageFactory* storage_factory = new StorageFactory();
 	SuperStorageFactory* superstorage_factory = new SuperStorageFactory();
@@ -46,6 +49,10 @@ int main() {
 		//в течении дня делаем заказы
 		for (auto build : buildings) {
 			build->checkOrder(buildings, boxes);
+		}
+
+		for (size_t i = 0; i < info_days.size(); ++i) {
+			info_days[i].push_back(buildings[i]->getDebugInfo());
 		}
 
 	}

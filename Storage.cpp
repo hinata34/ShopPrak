@@ -2,7 +2,7 @@
 
 Storage::Storage(int64_t days) : Building(days){
 	category = 2;
-	coef_for_price = 1.1;
+	coef_for_price = 1.2;
 }
 
 void Storage::checkOrder(std::vector<Building*>& buildings, std::vector<is::WholesaleBox*>& boxes) {
@@ -137,6 +137,7 @@ void Storage::applicationProcessing(is::Application* application) {
 }
 
 void Storage::receiveProducts(is::Application* application) {
+	debug.received.push_back(*application);
 	for (auto i : expected_applications) {
 		if (i->customer == application->customer) {
 			for (auto j : *i->application) {

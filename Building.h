@@ -1,15 +1,14 @@
 #pragma once
 #include "Config.h"
-#include "Day.h"
 class Building {
 public:
 	Building() = default;
 	Building(int64_t days);
 	virtual void checkApplications(std::vector<is::WholesaleBox*>& boxes); // Проверяем, что нужно отправить
 	virtual void checkOrder(std::vector<Building*>& buildings, std::vector<is::WholesaleBox*>& boxes); // Проверяем, что нужно заказать
-	virtual void updateDayInfo(Day* day) = 0; // Передает информацию по дню
 	virtual ~Building() = default;
 	int64_t getCategory();
+	is::DebugInfo getDebugInfo();
 protected:
 	virtual void createApplication(Building* receiver, std::vector<is::WholesaleBox*>& boxes); // Создание заказа
 	virtual void sendApplication(is::Application* application, Building* receiver); // Отправка заказа

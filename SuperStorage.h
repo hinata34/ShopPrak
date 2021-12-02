@@ -4,7 +4,6 @@ class SuperStorage : public Building {
 public:
 	SuperStorage() = default;
 	SuperStorage(int64_t days);
-	virtual void updateDayInfo(Day* day) override;
 	void setStorage(std::vector<is::WholesaleBox*>& boxes);
 	virtual ~SuperStorage() = default;
 protected:

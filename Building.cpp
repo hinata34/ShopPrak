@@ -6,6 +6,11 @@ Building::Building(int64_t days) {
 }
 
 void Building::checkApplications(std::vector<is::WholesaleBox*>& boxes) {
+	debug.earned_money = 0;
+	debug.spended_money = 0;
+	debug.received.clear();
+	debug.sended.clear();
+	debug.garbage = new is::List();
 	if (applications[0].empty()) {
 		applications.erase(applications.begin());
 		for (auto i : *products[0]) {
@@ -43,6 +48,10 @@ int64_t Building::getCategory() {
 	return category;
 }
 
+is::DebugInfo Building::getDebugInfo() {
+	return debug;
+}
+
 void Building::createApplication(Building* receiver, std::vector<is::WholesaleBox*>& boxes) {
 	this->sendApplication(this->generateApplication(receiver, boxes), receiver);
 }
@@ -62,6 +71,7 @@ void Building::applicationProcessing(is::Application* application) {
 
 void Building::sendProducts(is::Application* application) {
 	application->receiver->receiveProducts(application);
+	debug.sended.push_back(*application);
 	for (auto i : *application->application) {
 		for (auto j : products) {
 			if (i->counter == 0) {

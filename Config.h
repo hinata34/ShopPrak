@@ -66,7 +66,8 @@ namespace is {
 	};
 
 	struct DebugInfo {
-		List* received, sended;
+		std::vector<Application> received, sended;
+		List* garbage;
 		int64_t earned_money, spended_money;
 	};
 }

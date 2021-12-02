@@ -141,7 +141,6 @@
   <ItemGroup>
     <ClInclude Include="Building.h" />
     <ClInclude Include="Config.h" />
-    <ClInclude Include="Day.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="Rules.h" />
     <ClInclude Include="Shop.h" />
@@ -150,7 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Building.cpp" />
-    <ClCompile Include="Day.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="Rules.cpp" />
     <ClCompile Include="Shop.cpp" />

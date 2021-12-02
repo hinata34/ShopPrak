@@ -5,7 +5,6 @@ public:
 	Storage() = default;
 	Storage(int64_t days);
 	virtual void checkOrder(std::vector<Building*>& buildings, std::vector<is::WholesaleBox*>& boxes) override;
-	virtual void updateDayInfo(Day* day) override;
 	void setStorage(std::vector<is::WholesaleBox*>& boxes);
 	virtual ~Storage() = default;
 protected:
