@@ -7,13 +7,14 @@
 
 
 int main() {
-	int64_t days;
+	int64_t days, shops, products;
 	std::vector<is::WholesaleBox*> boxes;
 	std::vector<Building*> buildings;
-	boxes.resize(4);
+	std::cin >> days >> shops >> products;
+	boxes.resize(products);
 	Rules rules(boxes);
 	rules.setNumberOfBuilding(is::Builds::Trash, 1);
-	rules.setNumberOfBuilding(is::Builds::Shop, 1);
+	rules.setNumberOfBuilding(is::Builds::Shop, shops);
 	rules.setNumberOfBuilding(is::Builds::Storage, 1);
 	rules.setNumberOfBuilding(is::Builds::SuperStorage, 1);
 
@@ -33,17 +34,16 @@ int main() {
 
 	for (size_t i = 0; i < rules.getNumberOfBuilding(is::Builds::SuperStorage); ++i) {
 		buildings.push_back(superstorage_factory->createBuilding(days));
+		static_cast<SuperStorage*>(buildings[buildings.size() - 1])->setStorage(boxes);
 	}
 
 	for (size_t i = 0; i < rules.getNumberOfBuilding(is::Builds::Trash); ++i) {
 		buildings.push_back(trash_factory->createBuilding(days));
 	}
 
-	int64_t n = 30, m, k;
 
-	//std::cin >> n >> m >> k;
 
-	for (int i = 1; i <= n; ++i) {
+	for (int i = 0; i < days; ++i) {
 
 		//начало дня
 		

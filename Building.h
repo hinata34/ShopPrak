@@ -18,11 +18,12 @@ protected:
 	virtual void sendProducts(is::Application* application); // Отправка продуктов
 	virtual void receiveProducts(is::Application* application) ; // Прием продуктов
 	virtual is::Application* generateApplication(Building* receiver, std::vector<is::WholesaleBox*> boxes); // Генерация заказа
-	virtual void distributionProducts(); // Распределение продуктов
+	virtual void distributionProducts(std::vector<is::Application*>& new_applications); // Распределение продуктов
 
 	std::vector<std::vector<is::Application*>> applications; // То что мы отправляем
 	std::vector<is::List*> products; // То что лежит складе
 	std::vector<is::Application*> expected_applications; // Заказы, которые мы ожидаем
 	int64_t category; // К какой категории относится объект
+	double coef_for_price;
 };
 

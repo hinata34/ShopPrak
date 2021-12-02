@@ -11,11 +11,9 @@ public:
 	virtual ~Storage() = default;
 protected:
 	virtual void applicationProcessing(is::Application* application) override;
-	virtual void sendProducts(is::Application* application) override;
 	virtual void receiveProducts(is::Application* application) override;
 	virtual is::Application* generateApplication(Building* receiver, std::vector<is::WholesaleBox*> boxes);
-	virtual void distributionProducts() override;
+	virtual void distributionProducts(std::vector<is::Application*>& new_applications) override;
 	std::map<is::WholesaleBox*, int64_t> info_products;
-	double coef_for_price;
 };
 

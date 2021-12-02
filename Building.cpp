@@ -2,15 +2,37 @@
 
 Building::Building(int64_t days) {
 	applications.resize(days);
-	products.resize(days);
+	products.resize(days + 1);
 }
 
 void Building::checkApplications() {
 	if (applications[0].empty()) {
 		applications.erase(applications.begin());
+		for (auto i : *products[0]) {
+			delete i;
+		}
+		products.erase(products.begin());
 		return;
 	}
-
+	std::vector<is::Application*> new_applicatoins;
+	distributionProducts(new_applicatoins);
+	for (auto i : new_applicatoins) {
+		this->sendProducts(i);
+		delete i;
+	}
+	for (auto i : applications[0]) {
+		if (i->application->size() != 0) {
+			for (auto j : *i->application) {
+				delete j;
+			}
+		}
+		delete i;
+	}
+	applications.erase(applications.begin());
+	for (auto i : *products[0]) {
+		delete i;
+	}
+	products.erase(products.begin());
 }
 
 void Building::checkOrder(std::vector<Building*> buildings, std::vector<is::WholesaleBox*> boxes) {
@@ -39,7 +61,37 @@ void Building::applicationProcessing(is::Application* application) {
 }
 
 void Building::sendProducts(is::Application* application) {
-	return;
+	application->receiver->receiveProducts(application);
+	for (auto i : *application->application) {
+		for (auto j : products) {
+			if (i->counter == 0) {
+				break;
+			}
+			for (auto product : *j) {
+				if (i->counter == 0) {
+					break;
+				}
+				if (i->product == product->product) {
+					if (i->counter >= product->counter) {
+						i->counter -= product->counter;
+						product->counter = 0;
+						delete product;
+						j->erase(std::remove(j->begin(), j->end(), product), j->end());
+						break;
+					}
+					else {
+						product->counter -= i->counter;
+						i->counter = 0;
+						break;
+					}
+				}
+			}
+		}
+	}
+	for (auto i : *application->application) {
+		delete i;
+	}
+	application->application->resize(0);
 }
 
 void Building::receiveProducts(is::Application* application) {
@@ -50,6 +102,7 @@ is::Application* Building::generateApplication(Building* receiver, std::vector<i
 	return nullptr;
 }
 
-void Building::distributionProducts() {
+void Building::distributionProducts(std::vector<is::Application*>& new_applications) {
 	return;
 }
+

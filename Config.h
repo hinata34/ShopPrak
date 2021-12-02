@@ -5,6 +5,7 @@
 #include <map>
 #include <random>  
 #include <ctime>  
+#include <algorithm>
 
 struct Product;
 struct WholesaleBox;
@@ -25,7 +26,7 @@ namespace is {
 	struct Product {
 		std::string name;
 		int64_t price_per_kg, package_size;
-		int32_t storage_life;
+		int64_t storage_life;
 		Product(std::string name, int64_t price_per_kg,
 			int64_t package_size, int32_t storage_life) {
 			this->name = name;
