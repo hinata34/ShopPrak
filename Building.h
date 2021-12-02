@@ -9,6 +9,7 @@ public:
 	virtual ~Building() = default;
 	int64_t getCategory();
 	is::DebugInfo getDebugInfo();
+	void setDebugInfoSpended(int64_t spended_money);
 protected:
 	virtual void createApplication(Building* receiver, std::vector<is::WholesaleBox*>& boxes); // Создание заказа
 	virtual void sendApplication(is::Application* application, Building* receiver); // Отправка заказа

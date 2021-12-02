@@ -50,17 +50,11 @@ int64_t Building::getCategory() {
 }
 
 is::DebugInfo Building::getDebugInfo() {
-	for (auto i : debug.sended) {
-		for (auto j : *i.application) {
-			debug.earned_money += j->counter * j->product->price;
-		}
-	}
-	for (auto i : debug.received) {
-		for (auto j : *i.application) {
-			debug.spended_money += j->counter * j->product->price;
-		}
-	}
 	return debug;
+}
+
+void Building::setDebugInfoSpended(int64_t spended_money) {
+	debug.spended_money += spended_money;
 }
 
 void Building::createApplication(Building* receiver, std::vector<is::WholesaleBox*>& boxes) {
@@ -84,7 +78,9 @@ void Building::sendProducts(is::Application* application) {
 	application->receiver->receiveProducts(application);
 	debug.sended.push_back(*application);
 	for (auto i : *application->application) {
+		int64_t day = 0;
 		for (auto j : products) {
+			++day;
 			if (i->counter == 0) {
 				break;
 			}
@@ -95,6 +91,8 @@ void Building::sendProducts(is::Application* application) {
 				if (i->product == product->product) {
 					if (i->counter >= product->counter) {
 						i->counter -= product->counter;
+						debug.earned_money += static_cast<int64_t>(product->counter * product->product->price * coef_for_price * 
+																  (product->product->product->storage_life / 5 >= day && category == 2) ? 0.7 : 1);
 						product->counter = 0;
 						delete product;
 						j->erase(std::remove(j->begin(), j->end(), product), j->end());
@@ -102,6 +100,8 @@ void Building::sendProducts(is::Application* application) {
 					}
 					else {
 						product->counter -= i->counter;
+						debug.earned_money += static_cast<int64_t>(i->counter * product->product->price * coef_for_price *
+																  (product->product->product->storage_life / 5 >= day && category == 2) ? 0.7 : 1);
 						i->counter = 0;
 						break;
 					}
@@ -109,6 +109,7 @@ void Building::sendProducts(is::Application* application) {
 			}
 		}
 	}
+	application->receiver->setDebugInfoSpended(debug.earned_money);
 	for (auto i : *application->application) {
 		delete i;
 	}
