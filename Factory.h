@@ -7,26 +7,26 @@
 class Factory {
 public:
 	Factory() = default;
-	virtual Building* createBuilding() = 0;
+	virtual Building* createBuilding(int64_t days) = 0;
 	virtual ~Factory() = default;
 };
 
 class ShopFactory : public Factory {
 public:
-	Building* createBuilding() override; // Создание объекта Shop
+	Building* createBuilding(int64_t days) override; // Создание объекта Shop
 };
 
 class TrashFactory : public Factory {
 public:
-	Building* createBuilding() override; // Создание объекта Trash
+	Building* createBuilding(int64_t days) override; // Создание объекта Trash
 };
 
 class StorageFactory : public Factory {
 public:
-	Building* createBuilding() override; // Создание объекта Storage
+	Building* createBuilding(int64_t days) override; // Создание объекта Storage
 };
 
 class SuperStorageFactory : public Factory {
 public:
-	Building* createBuilding() override; // Создание объекта SuperStorage
+	Building* createBuilding(int64_t days) override; // Создание объекта SuperStorage
 };

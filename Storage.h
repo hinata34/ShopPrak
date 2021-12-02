@@ -2,7 +2,8 @@
 #include "Building.h"
 class Storage : public Building {
 public:
-	Storage();
+	Storage() = default;
+	Storage(int64_t days);
 	virtual void checkApplications() override;
 	virtual void checkOrder(std::vector<Building*> buildings, std::vector<is::WholesaleBox*> boxes) override;
 	virtual void updateDayInfo(Day* day) override;

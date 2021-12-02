@@ -1,6 +1,6 @@
 #include "Shop.h"
 
-Shop::Shop() {
+Shop::Shop(int64_t days) : Building(days) {
 	category = 1;
 }
 

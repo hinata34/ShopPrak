@@ -1,17 +1,17 @@
 #include "Factory.h"
 
-Building* ShopFactory::createBuilding() {
-	return new Shop();
+Building* ShopFactory::createBuilding(int64_t days) {
+	return new Shop(days);
 }
 
-Building* TrashFactory::createBuilding() {
-	return new Trash();
+Building* TrashFactory::createBuilding(int64_t days) {
+	return new Trash(days);
 }
 
-Building* StorageFactory::createBuilding() {
-	return new Storage();
+Building* StorageFactory::createBuilding(int64_t days) {
+	return new Storage(days);
 }
 
-Building* SuperStorageFactory::createBuilding() {
-	return new SuperStorage();
+Building* SuperStorageFactory::createBuilding(int64_t days) {
+	return new SuperStorage(days);
 }

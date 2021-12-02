@@ -4,6 +4,7 @@
 class Building {
 public:
 	Building() = default;
+	Building(int64_t days);
 	virtual void checkApplications(); // Проверяем, что нужно отправить
 	virtual void checkOrder(std::vector<Building*> buildings, std::vector<is::WholesaleBox*> boxes); // Проверяем, что нужно заказать
 	virtual void updateDayInfo(Day* day) = 0; // Передает информацию по дню

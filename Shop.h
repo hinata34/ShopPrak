@@ -2,7 +2,8 @@
 #include "Building.h"
 class Shop : public Building {
 public:
-	Shop();
+	Shop() = default;
+	Shop(int64_t days);
 	virtual void checkOrder(std::vector<Building*> buildings, std::vector<is::WholesaleBox*> boxes) override;
 	virtual void updateDayInfo(Day* day) override;
 	virtual ~Shop() = default;

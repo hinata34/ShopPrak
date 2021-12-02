@@ -1,6 +1,6 @@
 #include "SuperStorage.h"
 
-SuperStorage::SuperStorage() : Building(){
+SuperStorage::SuperStorage(int64_t days) : Building(days){
 	coef_for_price = 0.95;
 	category = 3;
 }

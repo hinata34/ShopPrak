@@ -1,6 +1,6 @@
 #include "Storage.h"
 
-Storage::Storage() : Building(){
+Storage::Storage(int64_t days) : Building(days){
 	category = 2;
 	coef_for_price = 1.1;
 }

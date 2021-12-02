@@ -1,7 +1,16 @@
 #include "Building.h"
 
+Building::Building(int64_t days) {
+	applications.resize(days);
+	products.resize(days);
+}
+
 void Building::checkApplications() {
-	return;
+	if (applications[0].empty()) {
+		applications.erase(applications.begin());
+		return;
+	}
+
 }
 
 void Building::checkOrder(std::vector<Building*> buildings, std::vector<is::WholesaleBox*> boxes) {

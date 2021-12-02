@@ -2,7 +2,8 @@
 #include "Building.h"
 class Trash : public Building {
 public:
-	Trash();
+	Trash() = default;
+	Trash(int64_t days);
 	virtual void checkApplications() override;
 	virtual void checkOrder(std::vector<Building*> buidlings, std::vector<is::WholesaleBox*> boxes) override;
 	virtual void updateDayInfo(Day* day) override;
