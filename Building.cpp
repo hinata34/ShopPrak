@@ -2,7 +2,7 @@
 
 Building::Building(int64_t days) {
 	applications.resize(days);
-	products.resize(days + 1);
+	products.resize(days + 1, new is::List());
 }
 
 void Building::checkApplications(std::vector<is::WholesaleBox*>& boxes) {

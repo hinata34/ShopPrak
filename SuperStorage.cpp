@@ -8,11 +8,8 @@ SuperStorage::SuperStorage(int64_t days) : Building(days){
 void SuperStorage::setStorage(std::vector<is::WholesaleBox*>& boxes) {
 	for (auto i : boxes) {
 		info_products.insert({ i, INT64_MAX });
-		if (i->product->storage_life >= products.size()) {
-			products[products.size() - 1]->push_back(new is::ElemInList(i, info_products[i]));
-		}
-		else {
-			products[i->product->storage_life - 1]->push_back(new is::ElemInList(i, info_products[i]));
+		for (auto j : products) {
+			j->push_back(new is::ElemInList(i, info_products[i]));
 		}
 	}
 }
