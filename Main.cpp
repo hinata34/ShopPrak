@@ -1,6 +1,5 @@
 #include "Shop.h"
 #include "Storage.h"
-#include "Trash.h"
 #include "SuperStorage.h"
 #include "Factory.h"
 #include "Rules.h"
@@ -13,13 +12,11 @@ int main() {
 	std::cin >> days >> shops >> products;
 	boxes.resize(products);
 	Rules rules(boxes);
-	rules.setNumberOfBuilding(is::Builds::Trash, 1);
 	rules.setNumberOfBuilding(is::Builds::Shop, shops);
 	rules.setNumberOfBuilding(is::Builds::Storage, 1);
 	rules.setNumberOfBuilding(is::Builds::SuperStorage, 1);
 
 	ShopFactory* shop_factory = new ShopFactory();
-	TrashFactory* trash_factory = new TrashFactory();
 	StorageFactory* storage_factory = new StorageFactory();
 	SuperStorageFactory* superstorage_factory = new SuperStorageFactory();
 
@@ -36,12 +33,6 @@ int main() {
 		buildings.push_back(superstorage_factory->createBuilding(days));
 		static_cast<SuperStorage*>(buildings[buildings.size() - 1])->setStorage(boxes);
 	}
-
-	for (size_t i = 0; i < rules.getNumberOfBuilding(is::Builds::Trash); ++i) {
-		buildings.push_back(trash_factory->createBuilding(days));
-	}
-
-
 
 	for (int i = 0; i < days; ++i) {
 

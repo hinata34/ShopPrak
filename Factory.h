@@ -2,7 +2,6 @@
 #include "Building.h"
 #include "Shop.h"
 #include "Storage.h"
-#include "Trash.h"
 #include "SuperStorage.h"
 class Factory {
 public:
@@ -14,11 +13,6 @@ public:
 class ShopFactory : public Factory {
 public:
 	Building* createBuilding(int64_t days) override; // Создание объекта Shop
-};
-
-class TrashFactory : public Factory {
-public:
-	Building* createBuilding(int64_t days) override; // Создание объекта Trash
 };
 
 class StorageFactory : public Factory {

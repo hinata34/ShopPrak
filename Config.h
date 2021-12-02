@@ -20,7 +20,6 @@ namespace is {
 		Shop,
 		Storage,
 		SuperStorage,
-		Trash
 	};
 
 	struct Product {

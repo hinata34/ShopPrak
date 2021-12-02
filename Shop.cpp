@@ -26,6 +26,10 @@ void Shop::checkOrder(std::vector<Building*>& buildings, std::vector<is::Wholesa
 	}
 }
 
+void Shop::receiveProducts(is::Application* Application) {
+
+}
+
 is::Application* Shop::generateApplication(Building* receiver, std::vector<is::WholesaleBox*>& boxes) {
 	std::mt19937_64 gen(time(0));
 	std::uniform_int_distribution<> uid_product(0, 5);
