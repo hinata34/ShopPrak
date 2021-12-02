@@ -5,7 +5,7 @@ Building::Building(int64_t days) {
 	products.resize(days + 1);
 }
 
-void Building::checkApplications() {
+void Building::checkApplications(std::vector<is::WholesaleBox*>& boxes) {
 	if (applications[0].empty()) {
 		applications.erase(applications.begin());
 		for (auto i : *products[0]) {
@@ -15,7 +15,7 @@ void Building::checkApplications() {
 		return;
 	}
 	std::vector<is::Application*> new_applicatoins;
-	distributionProducts(new_applicatoins);
+	distributionProducts(new_applicatoins, boxes);
 	for (auto i : new_applicatoins) {
 		this->sendProducts(i);
 		delete i;
@@ -35,7 +35,7 @@ void Building::checkApplications() {
 	products.erase(products.begin());
 }
 
-void Building::checkOrder(std::vector<Building*> buildings, std::vector<is::WholesaleBox*> boxes) {
+void Building::checkOrder(std::vector<Building*>& buildings, std::vector<is::WholesaleBox*>& boxes) {
 	return;
 }
 
@@ -43,7 +43,7 @@ int64_t Building::getCategory() {
 	return category;
 }
 
-void Building::createApplication(Building* receiver, std::vector<is::WholesaleBox*> boxes) {
+void Building::createApplication(Building* receiver, std::vector<is::WholesaleBox*>& boxes) {
 	this->sendApplication(this->generateApplication(receiver, boxes), receiver);
 }
 
@@ -98,11 +98,11 @@ void Building::receiveProducts(is::Application* application) {
 	return;
 }
 
-is::Application* Building::generateApplication(Building* receiver, std::vector<is::WholesaleBox*> boxes) {
+is::Application* Building::generateApplication(Building* receiver, std::vector<is::WholesaleBox*>& boxes) {
 	return nullptr;
 }
 
-void Building::distributionProducts(std::vector<is::Application*>& new_applications) {
+void Building::distributionProducts(std::vector<is::Application*>& new_applications, std::vector<is::WholesaleBox*>& boxes) {
 	return;
 }
 

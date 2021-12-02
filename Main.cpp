@@ -49,7 +49,7 @@ int main() {
 		
 		//утро
 		for (auto build : buildings) {
-			build->checkApplications();
+			build->checkApplications(boxes);
 		}
 
 		//в течении дня делаем заказы

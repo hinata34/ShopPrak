@@ -23,7 +23,7 @@ void SuperStorage::applicationProcessing(is::Application* application) {
 	applications[uid(gen)].push_back(application);
 }
 
-void SuperStorage::distributionProducts(std::vector<is::Application*>& new_applications) {
+void SuperStorage::distributionProducts(std::vector<is::Application*>& new_applications, std::vector<is::WholesaleBox*>& boxes) {
 	for (auto i : applications[0]) {
 		new_applications.push_back(new is::Application(i->receiver, i->customer, i->application));
 	}

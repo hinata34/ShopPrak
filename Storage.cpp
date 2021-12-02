@@ -5,13 +5,13 @@ Storage::Storage(int64_t days) : Building(days){
 	coef_for_price = 1.1;
 }
 
-void Storage::checkOrder(std::vector<Building*> buildings, std::vector<is::WholesaleBox*> boxes) {
+void Storage::checkOrder(std::vector<Building*>& buildings, std::vector<is::WholesaleBox*>& boxes) {
 	std::map<is::WholesaleBox*, int64_t> sum_application;
 	for (auto i : boxes) {
 		sum_application.insert({ i, 0 });
 	}
 	for (auto i : applications[0]) {
-		for (auto j : (*i->application)) {
+		for (auto j : *i->application) {
 			sum_application[j->product] += j->counter;
 		}
 	}
@@ -94,14 +94,14 @@ void Storage::receiveProducts(is::Application* application) {
 	}
 }
 
-is::Application* Storage::generateApplication(Building* receiver, std::vector<is::WholesaleBox*> boxes) {
+is::Application* Storage::generateApplication(Building* receiver, std::vector<is::WholesaleBox*>& boxes) {
 	is::Application* application = new is::Application(this, receiver, new is::List);
 	std::map<is::WholesaleBox*, int64_t> sum_application;
 	for (auto i : boxes) {
 		sum_application.insert({ i, 0 });
 	}
 	for (auto i : applications[0]) {
-		for (auto j : (*i->application)) {
+		for (auto j : *i->application) {
 			sum_application[j->product] += j->counter;
 		}
 	}
@@ -128,6 +128,67 @@ is::Application* Storage::generateApplication(Building* receiver, std::vector<is
 	return application;
 }
 
-void Storage::distributionProducts(std::vector<is::Application*>& new_applications) {
-
+void Storage::distributionProducts(std::vector<is::Application*>& new_applications, std::vector<is::WholesaleBox*>& boxes) {
+	std::map<is::WholesaleBox*, std::pair<int64_t, int64_t>> sum_application;
+	for (auto i : boxes) {
+		sum_application.insert({ i, {0, 0} });
+	}
+	for (auto i : applications[0]) {
+		new_applications.push_back(new is::Application(i->receiver, i->customer, new is::List()));
+		for (auto j : *i->application) {
+			sum_application[j->product].first += j->counter;
+			++sum_application[j->product].second;
+		}
+	}
+	std::map<is::WholesaleBox*, int64_t> sum_products;
+	for (auto i : boxes) {
+		sum_products.insert({ i, 0 });
+	}
+	for (auto i : products) {
+		for (auto j : *i) {
+			sum_products[j->product] += j->counter;
+		}
+	}
+	std::map<is::WholesaleBox*, std::vector<std::pair<int64_t, Building*>>> sorted;
+	for (auto i : boxes) {
+		std::vector<std::pair<int64_t, Building*>> tmp;
+		for (auto j : applications[0]) {
+			for (auto q : *j->application) {
+				if (i == q->product) {
+					tmp.push_back({ q->counter, j->receiver});
+				}
+			}
+		}
+		std::sort(tmp.begin(), tmp.end(), [](auto a, auto b) {
+			return a.first < b.first;
+		});
+		sorted[i] = tmp;
+	}
+	for (auto i : boxes) {
+		if (sum_application[i].first <= sum_products[i]) {
+			for (auto j : sorted[i]) {
+				for (auto q : new_applications) {
+					if (q->receiver == j.second) {
+						q->application->push_back(new is::ElemInList(i, j.first));
+					}
+				}
+			}
+		} else {
+			for (auto j : sorted[i]) {
+				for (auto q : new_applications) {
+					if (q->receiver == j.second) {
+						if (sum_products[i] / sum_application[i].second > j.first) {
+							q->application->push_back(new is::ElemInList(i, j.first));
+							sum_products[i] -= j.first;
+							--sum_application[i].second;
+						} else {
+							q->application->push_back(new is::ElemInList(i, sum_products[i] / sum_application[i].second));
+							sum_products[i] -= sum_products[i] / sum_application[i].second;
+							--sum_application[i].second;
+						}
+					}
+				}
+			}
+		}
+	}
 }
