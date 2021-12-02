@@ -52,21 +52,76 @@ void Storage::checkOrder(std::vector<Building*>& buildings, std::vector<is::Whol
 }
 
 void Storage::setStorage(std::vector<is::WholesaleBox*>& boxes) {
+	std::mt19937_64 gen(time(0));
+	std::uniform_int_distribution<> uid(0, 5);
 	for (auto i : boxes) {
-		if (i->product->name == "") {
-			info_products.insert({ i, 10 });
+		if (i->product->name == "Bananas") {
+			uid = std::uniform_int_distribution<>{ 500, 1000 };
+			info_products.insert({ i, uid(gen) });
 		}
-		if (i->product->name == "") {
-			info_products.insert({ i, 10 });
+		if (i->product->name == "Apples") {
+			uid = std::uniform_int_distribution<>{ 500, 1000 };
+			info_products.insert({ i, uid(gen) });
 		}
-		if (i->product->name == "") {
-			info_products.insert({ i, 10 });
+		if (i->product->name == "Tomatoes") {
+			uid = std::uniform_int_distribution<>{ 500, 700 };
+			info_products.insert({ i, uid(gen) });
 		}
-		if (i->product->name == "") {
-			info_products.insert({ i, 10 });
+		if (i->product->name == "Bread") {
+			uid = std::uniform_int_distribution<>{ 2000, 2500 };
+			info_products.insert({ i, uid(gen) });
 		}
-		if (i->product->name == "") {
-			info_products.insert({ i, 10 });
+		if (i->product->name == "Cucumbers") {
+			uid = std::uniform_int_distribution<>{ 700, 1000 };
+			info_products.insert({ i, uid(gen) });
+		}
+		if (i->product->name == "Potatoes") {
+			uid = std::uniform_int_distribution<>{ 500, 750 };
+			info_products.insert({ i, uid(gen) });
+		}
+		if (i->product->name == "Eggs") {
+			uid = std::uniform_int_distribution<>{ 100, 200 };
+			info_products.insert({ i, uid(gen) });
+		}
+		if (i->product->name == "Oil") {
+			uid = std::uniform_int_distribution<>{ 400, 600 };
+			info_products.insert({ i, uid(gen) });
+		}
+		if (i->product->name == "Orange") {
+			uid = std::uniform_int_distribution<>{ 50, 60 };
+			info_products.insert({ i, uid(gen) });
+		}
+		if (i->product->name == "Pork") {
+			uid = std::uniform_int_distribution<>{ 90, 100 };
+			info_products.insert({ i, uid(gen) });
+		}
+		if (i->product->name == "Sugar") {
+			uid = std::uniform_int_distribution<>{ 100, 150 };
+			info_products.insert({ i, uid(gen) });
+		}
+		if (i->product->name == "Salmon") {
+			uid = std::uniform_int_distribution<>{ 20, 70 };
+			info_products.insert({ i, uid(gen) });
+		}
+		if (i->product->name == "Caviar") {
+			uid = std::uniform_int_distribution<>{ 5, 10 };
+			info_products.insert({ i, uid(gen) });
+		}
+		if (i->product->name == "Tangerines") {
+			uid = std::uniform_int_distribution<>{ 700, 800 };
+			info_products.insert({ i, uid(gen) });
+		}
+		if (i->product->name == "Kiwi") {
+			uid = std::uniform_int_distribution<>{ 540, 600 };
+			info_products.insert({ i, uid(gen) });
+		}
+		if (i->product->name == "Milk") {
+			uid = std::uniform_int_distribution<>{ 800, 900 };
+			info_products.insert({ i, uid(gen) });
+		}
+		if (i->product->name == "Cheese") {
+			uid = std::uniform_int_distribution<>{ 90, 100 };
+			info_products.insert({ i, uid(gen) });
 		}
 		if (i->product->storage_life >= products.size()) {
 			products[products.size() - 1]->push_back(new is::ElemInList(i, info_products[i]));
