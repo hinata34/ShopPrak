@@ -53,12 +53,26 @@ void Storage::checkOrder(std::vector<Building*>& buildings, std::vector<is::Whol
 
 void Storage::setStorage(std::vector<is::WholesaleBox*>& boxes) {
 	for (auto i : boxes) {
-		info_products.insert({ i, 10 });
+		if (i->product->name == "") {
+			info_products.insert({ i, 10 });
+		}
+		if (i->product->name == "") {
+			info_products.insert({ i, 10 });
+		}
+		if (i->product->name == "") {
+			info_products.insert({ i, 10 });
+		}
+		if (i->product->name == "") {
+			info_products.insert({ i, 10 });
+		}
+		if (i->product->name == "") {
+			info_products.insert({ i, 10 });
+		}
 		if (i->product->storage_life >= products.size()) {
 			products[products.size() - 1]->push_back(new is::ElemInList(i, info_products[i]));
 		}
 		else {
-			products[i->product->storage_life - 1]->push_back(new is::ElemInList(i, info_products[i]));
+			products[i->product->storage_life]->push_back(new is::ElemInList(i, info_products[i]));
 		}
 	}
 }

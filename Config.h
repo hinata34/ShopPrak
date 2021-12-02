@@ -66,8 +66,8 @@ namespace is {
 		}
 	};
 
-	struct ShopApplication {
-		Application* application;
-		int32_t number;
+	struct DebugInfo {
+		List* received, sended;
+		int64_t earned_money, spended_money;
 	};
 }

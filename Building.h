@@ -25,5 +25,6 @@ protected:
 	std::vector<is::Application*> expected_applications; // Заказы, которые мы ожидаем
 	int64_t category; // К какой категории относится объект
 	double coef_for_price;
+	is::DebugInfo debug;
 };
 
