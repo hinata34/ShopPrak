@@ -35,6 +35,7 @@ void Building::checkApplications(std::vector<is::WholesaleBox*>& boxes) {
 	}
 	applications.erase(applications.begin());
 	for (auto i : *products[0]) {
+		debug.garbage->push_back(new is::ElemInList(i->product, i->counter));
 		delete i;
 	}
 	products.erase(products.begin());
@@ -49,6 +50,16 @@ int64_t Building::getCategory() {
 }
 
 is::DebugInfo Building::getDebugInfo() {
+	for (auto i : debug.sended) {
+		for (auto j : *i.application) {
+			debug.earned_money += j->counter * j->product->price;
+		}
+	}
+	for (auto i : debug.received) {
+		for (auto j : *i.application) {
+			debug.spended_money += j->counter * j->product->price;
+		}
+	}
 	return debug;
 }
 
