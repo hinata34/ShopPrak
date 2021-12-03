@@ -6,6 +6,7 @@ public:
 	Storage(int64_t days);
 	virtual void checkOrder(std::vector<Building*>& buildings, std::vector<is::WholesaleBox*>& boxes) override;
 	void setStorage(std::vector<is::WholesaleBox*>& boxes);
+	int64_t getInfoProducts(is::WholesaleBox* product);
 	virtual ~Storage() = default;
 protected:
 	virtual void applicationProcessing(is::Application* application) override;

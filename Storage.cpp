@@ -132,6 +132,10 @@ void Storage::setStorage(std::vector<is::WholesaleBox*>& boxes) {
 	}
 }
 
+int64_t Storage::getInfoProducts(is::WholesaleBox* product) {
+	return info_products[product];
+}
+
 void Storage::applicationProcessing(is::Application* application) {
 	applications[0].push_back(application);
 }

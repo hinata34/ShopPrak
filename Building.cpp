@@ -2,7 +2,10 @@
 
 Building::Building(int64_t days) {
 	applications.resize(days);
-	products.resize(days + 1, new is::List());
+	products.resize(days + 1);
+	for (auto& i : products) {
+		i = new is::List();
+	}
 }
 
 void Building::checkApplications(std::vector<is::WholesaleBox*>& boxes) {
@@ -25,14 +28,18 @@ void Building::checkApplications(std::vector<is::WholesaleBox*>& boxes) {
 		this->sendProducts(i);
 		delete i;
 	}
-	for (auto i : applications[0]) {
-		if (i->application->size() != 0) {
-			for (auto j : *i->application) {
-				delete j;
+	/*for (auto i : applications[0]) {
+		try {
+			if (i->application->size() != 0) {
+				for (auto j : *i->application) {
+					delete j;
+				}
 			}
+			delete i;
+		} catch(...) {
+			;
 		}
-		delete i;
-	}
+	}*/
 	applications.erase(applications.begin());
 	for (auto i : *products[0]) {
 		debug.garbage->push_back(new is::ElemInList(i->product, i->counter));
@@ -62,8 +69,10 @@ void Building::createApplication(Building* receiver, std::vector<is::WholesaleBo
 }
 
 void Building::sendApplication(is::Application* application, Building* receiver) {
-	expected_applications.push_back(application);
-	receiver->receiveApplication(application);
+	if (!application->application->empty()) {
+		expected_applications.push_back(application);
+		receiver->receiveApplication(application);
+	}
 }
 
 void Building::receiveApplication(is::Application* application) {
@@ -92,7 +101,7 @@ void Building::sendProducts(is::Application* application) {
 					if (i->counter >= product->counter) {
 						i->counter -= product->counter;
 						debug.earned_money += static_cast<int64_t>(product->counter * product->product->price * coef_for_price * 
-																  (product->product->product->storage_life / 5 >= day && category == 2) ? 0.7 : 1);
+																  ((product->product->product->storage_life / 5 >= day && category == 2) ? 0.7 : 1));
 						product->counter = 0;
 						delete product;
 						j->erase(std::remove(j->begin(), j->end(), product), j->end());
@@ -101,7 +110,7 @@ void Building::sendProducts(is::Application* application) {
 					else {
 						product->counter -= i->counter;
 						debug.earned_money += static_cast<int64_t>(i->counter * product->product->price * coef_for_price *
-																  (product->product->product->storage_life / 5 >= day && category == 2) ? 0.7 : 1);
+																  ((product->product->product->storage_life / 5 >= day && category == 2) ? 0.7 : 1));
 						i->counter = 0;
 						break;
 					}

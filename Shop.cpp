@@ -1,14 +1,10 @@
 #include "Shop.h"
-
+#include "Storage.h"
 Shop::Shop(int64_t days) : Building(days) {
 	category = 1;
 }
 
 void Shop::checkOrder(std::vector<Building*>& buildings, std::vector<is::WholesaleBox*>& boxes) {
-	std::mt19937_64 gen(time(0));
-	if (gen() % 2 != 0) {
-		return;
-	}
 	for (auto i : buildings) {
 		if (i->getCategory() == this->category + 1) {
 			bool flag = true;
@@ -28,16 +24,29 @@ void Shop::checkOrder(std::vector<Building*>& buildings, std::vector<is::Wholesa
 
 void Shop::receiveProducts(is::Application* application) {
 	debug.received.push_back(*application);
+	for (auto i : expected_applications) {
+		if (i->customer == application->customer) {
+			for (auto j : *i->application) {
+				delete j;
+			}
+			delete i;
+			expected_applications.erase(std::remove(expected_applications.begin(), expected_applications.end(), i),
+				expected_applications.end());
+			break;
+		}
+	}
 	return;
 }
 
 is::Application* Shop::generateApplication(Building* receiver, std::vector<is::WholesaleBox*>& boxes) {
 	std::mt19937_64 gen(time(0));
-	std::uniform_int_distribution<> uid_product(0, 5);
-	std::uniform_int_distribution<> uid_counter(0, 5);
-	is::Application* application = new is::Application(this, receiver, new is::List);
+	std::uniform_int_distribution<> uid_product(0, 4);
+	std::uniform_int_distribution<> uid_counter(1, 4);
+	is::Application* application = new is::Application(this, receiver, new is::List());
 	for (auto i : boxes) {
 		if (uid_product(gen) % 5 == 0) {
+			uid_counter = std::uniform_int_distribution<>{static_cast<int>(static_cast<Storage*>(receiver)->getInfoProducts(i) / 10), 
+														  static_cast<int>(static_cast<Storage*>(receiver)->getInfoProducts(i) / 4)};
 			application->application->push_back(new is::ElemInList(i, uid_counter(gen)));
 		}
 	}
