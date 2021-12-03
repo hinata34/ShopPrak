@@ -49,8 +49,8 @@ is::Application* Shop::generateApplication(Building* receiver, std::vector<is::W
 	is::Application* application = new is::Application(this, receiver, new is::List());
 	for (auto i : boxes) {
 		if (uid_product(gen) % 10 == 0) {
-			uid_counter = std::uniform_int_distribution<>{static_cast<int>(static_cast<Storage*>(receiver)->getInfoProducts(i) / 10), 
-														  static_cast<int>(static_cast<Storage*>(receiver)->getInfoProducts(i) / 6)};
+			uid_counter = std::uniform_int_distribution<>{static_cast<int>(static_cast<Storage*>(receiver)->getInfoProducts(i) / 15), 
+														  static_cast<int>(static_cast<Storage*>(receiver)->getInfoProducts(i) / 10)};
 			application->application->push_back(new is::ElemInList(i, uid_counter(gen)));
 		}
 	}
