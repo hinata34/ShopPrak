@@ -27,4 +27,3 @@ protected:
 	double coef_for_price;
 	is::DebugInfo debug;
 };
-

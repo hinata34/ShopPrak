@@ -15,7 +15,6 @@ void SuperStorage::setStorage(std::vector<is::WholesaleBox*>& boxes) {
 }
 
 void SuperStorage::applicationProcessing(is::Application* application) {
-	std::mt19937_64 gen(time(0));
 	std::uniform_int_distribution<> uid(0, 4);
 	applications[uid(gen) % applications.size()].push_back(application);
 }

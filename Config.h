@@ -11,10 +11,9 @@ struct Product;
 struct WholesaleBox;
 struct ElemInList;
 struct Application;
-
+static std::mt19937_64 gen = std::mt19937_64(time(0));
 class Building;
 class Rules;
-
 namespace is {
 	enum Builds {
 		Shop,

@@ -52,7 +52,6 @@ void Storage::checkOrder(std::vector<Building*>& buildings, std::vector<is::Whol
 }
 
 void Storage::setStorage(std::vector<is::WholesaleBox*>& boxes) {
-	std::mt19937_64 gen(time(0));
 	std::uniform_int_distribution<> uid(0, 5);
 	for (auto i : boxes) {
 		if (i->product->name == "Bananas") {

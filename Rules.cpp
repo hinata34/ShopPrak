@@ -4,7 +4,6 @@ Rules::Rules(std::vector<is::WholesaleBox*>& boxes) {
 	num_of_products_ = boxes.size();
 	numbers_of_buildings.resize(4); // задаем, сколько типов зданий
 	boxes.resize(17);
-	std::mt19937_64 gen(time(0));
 	std::uniform_int_distribution<> uid_price(83, 93);
 	std::uniform_int_distribution<> uid_size(12, 17);
 	std::uniform_int_distribution<> uid_life(10 , 14);
