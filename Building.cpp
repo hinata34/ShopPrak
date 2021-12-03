@@ -38,7 +38,7 @@ void Building::checkApplications(std::vector<is::WholesaleBox*>& boxes) {
 			}
 			delete i;
 		} catch(...) {
-			;
+			; 
 		}
 	}*/
 	applications.erase(applications.begin());

@@ -44,7 +44,7 @@ void Shop::receiveProducts(is::Application* application) {
 
 is::Application* Shop::generateApplication(Building* receiver, std::vector<is::WholesaleBox*>& boxes) {
 	std::uniform_int_distribution<> uid_product(0, 9);
-	std::uniform_int_distribution<> uid_counter(50, 200);
+	std::uniform_int_distribution<> uid_counter(50, 300);
 	is::Application* application = new is::Application(this, receiver, new is::List());
 	for (auto i : boxes) {
 		if (uid_product(gen) % 10 == 0) {
