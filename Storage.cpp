@@ -141,7 +141,11 @@ void Storage::applicationProcessing(is::Application* application) {
 }
 
 void Storage::receiveProducts(is::Application* application) {
-	debug.received.push_back(*application);
+	is::Application* new_app = new is::Application(application->receiver, application->customer, new is::List());
+	for (auto i : *application->application) {
+		new_app->application->push_back(new is::ElemInList(i->product, i->counter));
+	}
+	debug.received.push_back(*new_app);
 	for (auto i : *application->application) {
 		bool flag = true;
 		for (auto j : *products[i->product->product->storage_life - 1 >= products.size() ?

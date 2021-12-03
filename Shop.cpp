@@ -23,7 +23,11 @@ void Shop::checkOrder(std::vector<Building*>& buildings, std::vector<is::Wholesa
 }
 
 void Shop::receiveProducts(is::Application* application) {
-	debug.received.push_back(*application);
+	is::Application* new_app = new is::Application(application->receiver, application->customer, new is::List());
+	for (auto i : *application->application) {
+		new_app->application->push_back(new is::ElemInList(i->product, i->counter));
+	}
+	debug.received.push_back(*new_app);
 	for (auto i : expected_applications) {
 		if (i->customer == application->customer) {
 			for (auto j : *i->application) {

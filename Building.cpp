@@ -86,7 +86,11 @@ void Building::applicationProcessing(is::Application* application) {
 
 void Building::sendProducts(is::Application* application) {
 	application->receiver->receiveProducts(application);
-	debug.sended.push_back(*application);
+	is::Application* new_app = new is::Application(application->receiver, application->customer, new is::List());
+	for (auto i : *application->application) {
+		new_app->application->push_back(new is::ElemInList(i->product, i->counter));
+	}
+	debug.sended.push_back(*new_app);
 	for (auto i : *application->application) {
 		int64_t day = 0;
 		for (auto j : products) {
