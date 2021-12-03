@@ -1,7 +1,7 @@
 #include "Building.h"
 
 Building::Building(int64_t days) {
-	applications.resize(days);
+	applications.resize(days + 1);
 	products.resize(days + 1);
 	for (auto& i : products) {
 		i = new is::List();
@@ -17,6 +17,7 @@ void Building::checkApplications(std::vector<is::WholesaleBox*>& boxes) {
 	if (applications[0].empty()) {
 		applications.erase(applications.begin());
 		for (auto i : *products[0]) {
+			debug.garbage->push_back(new is::ElemInList(i->product, i->counter));
 			delete i;
 		}
 		products.erase(products.begin());
@@ -103,8 +104,8 @@ void Building::sendProducts(is::Application* application) {
 						debug.earned_money += static_cast<int64_t>(product->counter * product->product->price * coef_for_price * 
 																  ((product->product->product->storage_life / 5 >= day && category == 2) ? 0.7 : 1));
 						product->counter = 0;
-						delete product;
 						j->erase(std::remove(j->begin(), j->end(), product), j->end());
+						delete product;
 						break;
 					}
 					else {

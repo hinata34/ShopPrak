@@ -16,9 +16,7 @@ int main() {
 	rules.setNumberOfBuilding(is::Builds::Shop, shops);
 	rules.setNumberOfBuilding(is::Builds::Storage, 1);
 	rules.setNumberOfBuilding(is::Builds::SuperStorage, 1);
-	info_days.resize(rules.getNumberOfBuilding(is::Builds::Shop) +
-					 rules.getNumberOfBuilding(is::Builds::Storage) +
-					 rules.getNumberOfBuilding(is::Builds::SuperStorage));
+	info_days.resize(days);
 	ShopFactory* shop_factory = new ShopFactory();
 	StorageFactory* storage_factory = new StorageFactory();
 	SuperStorageFactory* superstorage_factory = new SuperStorageFactory();
@@ -51,10 +49,14 @@ int main() {
 			build->checkOrder(buildings, boxes);
 		}
 
-		for (size_t i = 0; i < info_days.size(); ++i) {
-			info_days[i].push_back(buildings[i]->getDebugInfo());
+		for (size_t j = 0; j < rules.getNumberOfBuilding(is::Builds::Shop) + 
+							   rules.getNumberOfBuilding(is::Builds::Storage) + 
+							   rules.getNumberOfBuilding(is::Builds::SuperStorage); ++j) {
+			info_days[i].push_back(buildings[j]->getDebugInfo());
 		}
 
 	}
-
+	for (auto i : info_days) {
+		;
+	}
 }

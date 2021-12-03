@@ -17,11 +17,14 @@ void SuperStorage::setStorage(std::vector<is::WholesaleBox*>& boxes) {
 void SuperStorage::applicationProcessing(is::Application* application) {
 	std::mt19937_64 gen(time(0));
 	std::uniform_int_distribution<> uid(0, 4);
-	applications[uid(gen)].push_back(application);
+	applications[uid(gen) % applications.size()].push_back(application);
 }
 
 void SuperStorage::distributionProducts(std::vector<is::Application*>& new_applications, std::vector<is::WholesaleBox*>& boxes) {
 	for (auto i : applications[0]) {
-		new_applications.push_back(new is::Application(i->receiver, i->customer, i->application));
+		new_applications.push_back(new is::Application(i->receiver, i->customer, new is::List()));
+		for (auto j : *i->application) {
+			new_applications[new_applications.size() - 1]->application->push_back(new is::ElemInList(j->product, j->counter));
+		}
 	}
 }

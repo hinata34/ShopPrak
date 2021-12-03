@@ -27,7 +27,7 @@ void Storage::checkOrder(std::vector<Building*>& buildings, std::vector<is::Whol
 	bool flag = false;
 	for (auto i : boxes) {
 		if (sum_products[i] - sum_application[i] < info_products[i] / 2) {
-			bool flag = true;
+		    flag = true;
 			break;
 		}
 	}
@@ -142,20 +142,10 @@ void Storage::applicationProcessing(is::Application* application) {
 
 void Storage::receiveProducts(is::Application* application) {
 	debug.received.push_back(*application);
-	for (auto i : expected_applications) {
-		if (i->customer == application->customer) {
-			for (auto j : *i->application) {
-				delete j;
-			}
-			delete i;
-			expected_applications.erase(std::remove(expected_applications.begin(), expected_applications.end(), i), 
-										expected_applications.end());
-			break;
-		}
-	}
 	for (auto i : *application->application) {
 		bool flag = true;
-		for (auto j : *products[i->product->product->storage_life - 1]) {
+		for (auto j : *products[i->product->product->storage_life - 1 >= products.size() ?
+			products.size() - 1 : i->product->product->storage_life - 1]) {
 			if (j->product == i->product) {
 				j->counter += i->counter;
 				flag = false;
@@ -163,7 +153,23 @@ void Storage::receiveProducts(is::Application* application) {
 			}
 		}
 		if (flag) {
-			products[i->product->product->storage_life - 1]->push_back(new is::ElemInList(i->product, i->counter));
+			if (i->product->product->storage_life >= products.size()) {
+				products[products.size() - 1]->push_back(new is::ElemInList(i->product, i->counter));
+			}
+			else {
+				products[i->product->product->storage_life - 1]->push_back(new is::ElemInList(i->product, i->counter));
+			}
+		}
+	}
+	for (auto i : expected_applications) {
+		if (i->customer == application->customer) {
+			for (auto j : *i->application) {
+				delete j;
+			}
+			expected_applications.erase(std::remove(expected_applications.begin(), expected_applications.end(), i),
+										expected_applications.end());
+			delete i;
+			break;
 		}
 	}
 }
@@ -195,7 +201,7 @@ is::Application* Storage::generateApplication(Building* receiver, std::vector<is
 				application->application->push_back(new is::ElemInList(i, info_products[i]));
 			}
 			else {
-				application->application->push_back(new is::ElemInList(i, sum));
+				application->application->push_back(new is::ElemInList(i, sum + info_products[i] / 4));
 			}
 		}
 	}
